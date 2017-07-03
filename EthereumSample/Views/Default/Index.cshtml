@@ -1,0 +1,46 @@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@using Nethereum.Web3;
+@{
+    var web3 = new Web3();
+    var accounts = await web3.Eth.Accounts.SendRequestAsync();
+    <h1>Accounts</h1>
+    foreach (var account in accounts)
+    {
+        <div>
+            @Html.Raw(account)
+        </div>
+    }
+}*@
+<script src="~/app.bundle.js"></script>
+<script>
+    window.onload = function () {
+        //App.showAccounts();
+    };
+
+    const done = 4;
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'text';
+    xhr.open('GET', 'contracts/SendCoinContract.sol', true);
+    xhr.onloadend = function (result) {
+        if (xhr.readyState == done) {
+            //App.demoSendCoinContract(xhr.response);
+        }
+    }
+    xhr.send();
+
+    const done2 = 4;
+    const xhr2 = new XMLHttpRequest();
+    xhr2.responseType = 'text';
+    xhr2.open('GET', 'contracts/SellCarContract.sol', true);
+    xhr2.onloadend = function (result) {
+        if (xhr2.readyState == done2) {
+            App.demoSellCarContract(xhr2.response);
+        }
+    }
+    xhr2.send();
+</script>
